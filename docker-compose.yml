@@ -1,0 +1,16 @@
+version: '3'
+services:
+   hcp-line-docker:
+      container_name: hcp_lines
+      build: .
+      ports:
+         - "8888:8888"
+      environment:
+         - HCP_AUTO_RELEASE=$HCP_AUTO_DATABASE
+         - HCP_AUTO_DATABASE=$HCP_AUTO_RELEASE
+         - HCP_CREDENTIALS=$HCP_CREDENTIALS
+         - HCP_AUTO_PATH=/data/HCP/subjects
+         - HCP_SUBJECTS_DIR=/data/HCP/subjects
+      volumes:
+         - "$HCP_SUBJECTS_DIR:/data/HCP/subjects"
+         - "$PWD/notebooks:/home/jovyan/notebooks"
